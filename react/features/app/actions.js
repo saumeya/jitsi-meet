@@ -1,7 +1,11 @@
 /* @flow */
 
 import { setRoom } from '../base/conference';
-import { configWillLoad, loadConfigError, setConfig } from '../base/config';
+import {
+    configWillLoad,
+    loadConfigError,
+    setConfig
+} from '../base/config';
 import { setLocationURL } from '../base/connection';
 import { loadConfig } from '../base/lib-jitsi-meet';
 import { parseURIString } from '../base/util';

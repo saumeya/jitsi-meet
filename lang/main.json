@@ -497,7 +497,7 @@
         "msg": "We stumbled a bit.",
         "retry": "Try again",
         "support": "Support",
-        "supportMsg": "If this keeps happening, reach out to"
+        "supportMsg": "If this keeps happening, reach out to <a href= __url__  rel = 'noopener noreferrer' target='_blank'>Support</a>."
     },
     "deviceError": {
         "cameraError": "Failed to access your camera",

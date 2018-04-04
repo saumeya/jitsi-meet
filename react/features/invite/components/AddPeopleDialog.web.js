@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import { createInviteDialogEvent, sendAnalytics } from '../../analytics';
 import { getInviteURL } from '../../base/connection';
 import { Dialog, hideDialog } from '../../base/dialog';
-import { translate } from '../../base/i18n';
+import { translate, translateToHTML } from '../../base/i18n';
 import { MultiSelectAutocomplete } from '../../base/react';
 import { inviteVideoRooms } from '../../videosipgw';
 
@@ -648,32 +648,16 @@ class AddPeopleDialog extends Component<*, *> {
         }
 
         const { t } = this.props;
-        const supportString = t('inlineDialogFailure.supportMsg');
         const supportLink = interfaceConfig.SUPPORT_URL;
-        const supportLinkContent
-            = ( // eslint-disable-line no-extra-parens
-                <span>
-                    <span>
-                        { supportString.padEnd(supportString.length + 1) }
-                    </span>
-                    <span>
-                        <a
-                            href = { supportLink }
-                            rel = 'noopener noreferrer'
-                            target = '_blank'>
-                            { t('inlineDialogFailure.support') }
-                        </a>
-                    </span>
-                    <span>.</span>
-                </span>
-            );
+        const supportString = translateToHTML(t,
+            'inlineDialogFailure.supportMsg', { url: supportLink });
 
         return (
             <div className = 'modal-dialog-form-error'>
                 <InlineMessage
                     title = { t('addPeople.failedToAdd') }
                     type = 'error'>
-                    { supportLinkContent }
+                    { supportString }
                 </InlineMessage>
             </div>
         );

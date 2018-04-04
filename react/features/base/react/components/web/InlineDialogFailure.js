@@ -4,7 +4,7 @@ import Button from '@atlaskit/button';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import { translate } from '../../../i18n';
+import { translate, translateToHTML } from '../../../i18n';
 
 declare var interfaceConfig: Object;
 
@@ -36,34 +36,19 @@ class InlineDialogFailure extends Component<*> {
      */
     render() {
         const { t } = this.props;
-
         const supportLink = interfaceConfig.SUPPORT_URL;
-        const supportString = t('inlineDialogFailure.supportMsg');
-        const supportLinkElem
-            = supportLink
-                ? ( // eslint-disable-line no-extra-parens
-                    <div className = 'inline-dialog-error-text'>
-                        <span>{ supportString.padEnd(supportString.length + 1) }
-                        </span>
-                        <span>
-                            <a
-                                href = { supportLink }
-                                rel = 'noopener noreferrer'
-                                target = '_blank'>
-                                { t('inlineDialogFailure.support') }
-                            </a>
-                        </span>
-                        <span>.</span>
-                    </div>
-                )
-                : null;
+        const supportString = translateToHTML(t,
+                'inlineDialogFailure.supportMsg', { url: supportLink });
 
         return (
             <div className = 'inline-dialog-error'>
                 <div className = 'inline-dialog-error-text'>
                     { t('inlineDialogFailure.msg') }
                 </div>
-                { supportLinkElem }
+                <div className = 'inline-dialog-error-text'>
+                    { supportString }
+                </div>
+
                 <Button
                     className = 'inline-dialog-error-button'
                     onClick = { this.props.onRetry } >
